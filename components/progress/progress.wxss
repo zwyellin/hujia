@@ -1,0 +1,76 @@
+/* components/progress/progress.wxss */
+@import "/app.wxss";
+
+.progress-container {
+    width: 100%;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+/* 加载条容器下的加载条 */
+/* 进度条条纹技巧：对角线、对角线的0-25%蒙层，25%透明到50%t透明，50%蒙层到75%蒙层，75%透明到100%透明
+*  然后设置背景大小，宽高肯定要一样，然后会背景repeat。我们再看宽度方向重复的第二块，及对角线的0-25%蒙层刚好连上第一块的50%蒙层到75%蒙层。从而不会出现交叉错落
+*/
+.progress-container view {
+     /* 以下为不再变部分 */
+    align-items: center;
+    display: flex;
+    justify-items: flex-end;
+    justify-content: space-around;
+    transition: width 0.6s ease;
+    border-top-right-radius: 10000rpx;
+    border-bottom-right-radius: 10000rpx;
+}
+
+/* 进度条1样式：开始*/
+.progress-container.type1 view{
+    /* 以下可以外部传入覆盖，但记得加!important */
+    width: 0;/*默认值，这个后面传值覆盖*/
+    height: 10rpx;/*默认值，这个后面传值覆盖*/
+    font-size: 20rpx;/*默认值，这个后面传值覆盖*/
+    color: #fff;/*默认值，这个后面传值覆盖*/
+    background-color:#333; /*默认值，这个后面传值覆盖*/
+    /* 下面的渐变，如果希望是斑马线类型的，则格式是固定的，也可以自定义background-image来覆盖 */
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-size: 50rpx 50rpx;/*会重复,宽高要一样。不然条纹会交错*/
+}
+/* 激活状态：即加上动画 */
+.progress-container.type1.active view {
+    animation: progress-stripes1 1s linear infinite;
+}	
+@keyframes progress-stripes1 {
+	from {
+        background-position: 0 0;/*修改这个长度，或者动画的时间，可以控制动画的速度*/
+        /* background-size:0 100% ; */
+	}
+	to {
+        background-position: 100rpx 0;/*固定值，适合匀速动画*/
+        /* background-size:100% 100% ; */
+	}
+}
+/* 进度条1样式：结束 */
+
+/* 进度条2样式：开始 */
+.progress-container.type2 view{
+    /* 以下可以外部传入覆盖，但记得加!important */
+    width: 0;/*默认值，这个后面传值覆盖*/
+    height: 30rpx;/*默认值，这个后面传值覆盖*/
+    font-size: 20rpx;/*默认值，这个后面传值覆盖*/
+    color: #fff;/*默认值，这个后面传值覆盖*/
+    /* 下面的渐变，如果希望是斑马线类型的，则格式是固定的，也可以自定义background-image来覆盖 */
+    background-image: linear-gradient(to right,#999 0%,purple 100%),/*这个是在上面显示的*/
+                      linear-gradient(to right,#999 0%,purple 100%);
+    background-repeat:repeat-y  !important;
+}
+/* 激活状态：即加上动画 */
+.progress-container.type2.active view {
+    animation: progress-stripes2 1s cubic-bezier(.17,.67,.45,1.03) infinite;
+}	
+@keyframes progress-stripes2 {
+	from {
+        background-size:0 100%,100% 100% ;
+	}
+	to {
+        background-size:100% 100%,100% 100% ;
+	}
+}

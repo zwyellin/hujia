@@ -1,0 +1,7 @@
+<!--components/modal/modal.wxml-->
+<!-- 底下蒙层 -->
+<view class="modal {{show ? 'show':''}}  {{type}}" style="top:{{customNavBarHeight}}px" catch:tap="modal_tap">
+    <view class="modal_content" catch:tap="modal_content_tap">
+        <slot ></slot>
+    </view>
+</view>

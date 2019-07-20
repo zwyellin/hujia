@@ -1,0 +1,119 @@
+/* components/modal/modal.wxss */
+:host{
+    --time:.9s;
+}
+/* 底下蒙层 */
+.modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	opacity: 0;
+	outline: 0;
+	-webkit-transform: scale(1.185);
+	        transform: scale(1.185);
+	-webkit-backface-visibility: hidden;
+	        backface-visibility: hidden;
+	-webkit-perspective: 2000rpx;
+	        perspective: 2000rpx;
+	background: rgba(0, 0, 0, 0.6);
+	-webkit-transition: all 1s ease-in-out 0s;
+	transition: all var(--time) ease-in-out 0s;
+    pointer-events: none;
+    
+    display: -webkit-box;
+    display: flex;
+}
+
+.modal.show {
+	opacity: 1;
+	-webkit-transition-duration: 0.3s;
+	        transition-duration: 0.3s;
+	-webkit-transform: scale(1);
+	        transform: scale(1);
+	overflow-x: hidden;
+	overflow-y: auto;
+	pointer-events: auto;
+}
+/* 底层容器布局相关 */
+/* 居中 */
+.modal.center{
+    justify-content: center;
+    align-items: center;
+}
+.modal.top{
+    justify-content: center;
+    align-items: flex-start;
+}
+.modal.bottom{
+    justify-content: center;
+    align-items: flex-end;
+}
+.modal.left{
+    
+}
+.modal.right{
+    justify-content: flex-end;
+}
+
+/** ----------------------------- 以下是内容样式-----------------------------
+  */
+/* 内容 */
+.modal .modal_content{
+    position:relative;
+    max-width:100%;
+    overflow:hidden;
+    transition-duration: var(--time);
+}
+/* 左右抽屉必须高度100% */
+.modal.left .modal_content view,.modal.right .modal_content view{
+    height: 100% !important;
+}
+/* 动画 */
+/* center: */
+.modal.center .modal_content{
+    opacity: 0;
+    transform: scale3d(0, 0, 0);
+}
+.modal.center.show  .modal_content{
+    opacity: 1;
+    transform: scale3d(1, 1, 1)
+}
+/* top: */
+.modal.top .modal_content{
+    opacity: 0;
+    transform: translateY(-100%);
+}
+.modal.top.show  .modal_content{
+    opacity: 1;
+    transform: translateY(0);
+}
+/* bottom: */
+.modal.bottom .modal_content{
+    opacity: 0;
+    transform: translateY(100%);
+}
+.modal.bottom.show  .modal_content{
+    opacity: 1;
+    transform: translateY(0);
+}
+/* left: */
+.modal.left .modal_content{
+    opacity: 0;
+    transform: translateX(-100%);
+}
+.modal.left.show  .modal_content{
+    opacity: 1;
+    transform: translateX(0);
+}
+/* right */
+.modal.right .modal_content{
+    opacity: 0;
+    transform: translateX(100%);
+}
+.modal.right.show  .modal_content{
+    opacity: 1;
+    transform: translateX(0);
+}

@@ -1,0 +1,25 @@
+/* components/notify/notify.wxss */
+:host{
+    --time:0.8s;
+}
+/* 底下蒙层 */
+.notify {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 1100;
+	opacity: 0;
+	outline: 0;
+    pointer-events: none;
+    text-align: center;/*文本居中*/
+    padding: 6rpx 10rpx;
+
+    opacity: 0;
+    transform: translateY(-100%);
+    transition-duration: var(--time);
+}
+.notify.show{
+    opacity: 1;
+    transform: translateY(0);
+}

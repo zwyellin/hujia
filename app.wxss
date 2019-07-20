@@ -1,0 +1,3 @@
+/**app.wxss**/
+@import "/common.wxss" ; /*引入常用类*/
+@import "/animate.wxss" ; /*引入动画类*/

@@ -1,0 +1,630 @@
+/* float布局*/
+.fl{float: left;} 
+.fr{float: right;}  
+/* 清除浮动 */
+.clear{height:0;clear:both;font-size:0} /*clear:这个是放在float元素的最后面额外添加的标签上面*/
+/* .clearfix{*zoom:1}clearfix：这个是用于float元素的父元素标签上面 */
+.clearfix:after,.clearfix:before{display:table;content:" "}
+.clearfix:after{clear:both}
+/*float的栅格系统布局*/
+/* 行 ：需要配合clear或clearfix一起使用*/
+.float-row{-webkit-box-sizing: border-box;box-sizing: border-box;}
+/* 列 */
+/* 补充说明：
+    1、若要列之间有间歇：则额外用padding,若想偏移，则用margin-left/right或者用一个<div class="loat-col-3"></div>来占空间
+    2、可以配合flex一起使用。通过 flex 布局来对分栏进行灵活的对齐。参考element ui
+*/
+[class*=float-col-]{float: left;}
+.float-col-1{width: 8.33333333%;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.float-col-2{width: 16.66666667%;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.float-col-3{width: 25%;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.float-col-4{width: 33.33333333%;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.float-col-5{width: 41.66666667%;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.float-col-6{width: 50%;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.float-col-7{width: 58.33333333%;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.float-col-8{width: 66.66666667%;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.float-col-9{width: 75%;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.float-col-10{width: 83.33333333%;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.float-col-11{width: 91.66666667%;-webkit-box-sizing: border-box;box-sizing: border-box;}
+.float-col-12{width: 100%;-webkit-box-sizing: border-box;box-sizing: border-box;}
+
+
+
+/* position：定位 */
+/* 绝对或固定或float元素会生成一个inline-block框,而不论该元素本身是什么类型 */
+/* relative：作用补充：
+    1、需要保留自己的文档空间，实现类似absolute随意定位功能的情况。如滑动一定距离悬浮吸顶(建议用这个而不是ablosute，避免吸顶时文档重排及文档波动)【优化技巧】
+    2、后代需要以这个节点为absolute绝对定位，此时设置relative
+    3、不会改变框类型
+ */
+.static{position: static;}/*默认值：忽略定位相关的属性：top,bottom,left,right或者z-index声明*/
+.rel{position:relative;}/*实现在文档流(还占用原文档流位置)，相对于 static 定位以外的第一个父元素进行定位，可以left，right，top，bottom及z-index  √*/
+.abs{position:absolute;}/*脱离文档流，相对于浏览器窗口进行定位，相对于可以left，right，top，bottom及z-index*/
+.fixed{position: fixed;}
+
+
+/*display：框类型*/
+.dn{display:none;}
+.db{display:block;}
+.di{display:inline;}
+.dib,.dbi{-moz-inline-stack:inline-block; display:inline-block;}
+
+
+/* 盒子模型 */
+/* content-box,border-box */
+/* w3c width指的是内容盒子的宽度，IE指的是到border的宽度 */
+/* 
+* {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+*:before,*:after {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;} 
+*/
+.border-box{box-sizing:border-box;-moz-box-sizing:border-box; /* Firefox */-webkit-box-sizing:border-box; /* Safari */}
+.content-box{box-sizing:content-box;-moz-box-sizing:content-box; /* Firefox */-webkit-box-sizing:content-box; /* Safari */}
+
+
+/* 内外边距，盒子模型*//* 单位根据应用场景来换 */
+/*A:知识补充：margin/padding的值
+    1、长度：
+    2、auto:水平可以auto
+    3、百分比：相当于父元素的宽度的百分比【上下边距也是根据width的百分比来计算的】【这里类似于垂直方向没办法auto一个道理】【对于保持整体不变形很有用！】
+*B:对于display属性不同时，表现也不同
+    1、block元素可以使用四个方向的margin值；2、inline元素使用上下方向的margin值无效；3、inline-block使用上下方向的margin负值看上去无效
+*/
+
+/* 外边框 */
+/* 上下 */
+.mtb-20{margin-top:20rpx;margin-bottom: 20rpx;}
+.mtb-40{margin-top:40rpx;margin-bottom: 40rpx;}
+.mt-20{margin-top:20rpx;}
+.mt-40{margin-top:40rpx;}
+.mb-20{margin-bottom: 20rpx;}
+.mb-40{margin-bottom: 40rpx;}
+/*左右*/
+.mlr-auto{margin-left: auto;margin-right: auto;}
+.mlr-20{margin-left: 20rpx;margin-right: 20rpx;}
+.mlr-40{margin-left: 40rpx;margin-right: 40rpx;}
+.ml-20{margin-left: 20rpx;}
+.ml-40{margin-left: 40rpx;}
+.mr-20{margin-right: 20rpx;}
+.mr-40{margin-right: 40rpx;}
+/* margin的百分比：可用于栅格布局的偏移*/
+.ml-col-1{margin-left: 8.33333333%;}
+.ml-col-2{width: 16.66666667%;}
+.ml-col-3{width: 25%;}
+.ml-col-4{width: 33.33333333%;}
+.ml-col-5{width: 41.66666667%;}
+.ml-col-6{width: 50%;}
+.ml-col-7{width: 58.33333333%;}
+.ml-col-8{width: 66.66666667%;}
+.ml-col-9{width: 75%;}
+.ml-col-10{width: 83.33333333%;}
+.ml-col-11{width: 91.66666667%;}
+.ml-col-12{width: 100%;}
+/* 上下左右 */
+.m-auto{margin: auto;}/*可用于绝对定位元素的水平垂直居中*/
+.m-20{margin: 20rpx;}
+.m-40{margin: 40rpx;}
+
+
+/* 内边框 */
+/* 上下 */
+.ptb-20{padding-top:20rpx;padding-bottom: 20rpx;}
+.ptb-40{padding-top:40rpx;padding-bottom: 40rpx;}
+.pt-20{padding-top:20rpx;}
+.pt-40{padding-top:40rpx;}
+.pb-20{padding-bottom: 20rpx;}
+.pb-40{padding-bottom: 40rpx;}
+/*左右*/
+.plr-20{padding-left: 20rpx;padding-right: 20rpx;}
+.plr-20{padding-left: 20rpx;padding-right: 20rpx;}
+.pl-20{padding-left: 20rpx;}
+.pl-40{padding-left: 40rpx;}
+.pr-20{padding-right: 20rpx;}
+.pr-40{padding-right: 40rpx;}
+/* 上下左右 */
+.p-20{padding: 20rpx;}
+.p-40{padding: 40rpx;}
+
+
+/*圆角*/
+.br-4{border-radius: 4rpx;}
+.br-6{border-radius: 6rpx;}
+.br-8{border-radius: 8rpx;}
+.br-10{border-radius: 10rpx;}
+.br-20{border-radius: 20rpx;}
+.br-30{border-radius: 30rpx;}
+.br-40{border-radius: 40rpx;}
+.br-max{border-radius: 5000rpx;}/*长宽不一样：左右两半圆;如果是正方形，则是圆*/
+
+
+/* 边框 */
+/* 边框线 */
+/* 边框线的值继承：
+  设置border-style，就会出现边框。设置了border-width/style/color之后，上下左右独自的边框的某个样式会继承border-*对应的   √
+*/
+[class*=border]{border-width: 1rpx;}
+.border-color{border-color:grey;}
+.border-t{border-top-style: solid;}
+.border-b{border-bottom-style: solid;}
+.border-tb{border-top-style: solid;border-bottom-style: solid;}
+.border-l{border-left-style: solid;}
+.border-r{border-right-style: solid;}
+.border-lr{border-left-style: solid;border-right-style: solid;}
+.border{border-style: solid;}
+
+
+/*文本对齐方式*/
+.text-center{text-align:center;}
+.text-right{text-align:right;}
+.text-left{text-align:left;}
+.text-justify{ /*实现固定宽度的平均分布字体*/
+    text-align: justify;
+    height: 40rpx;line-height: 40rpx; /*这个要外部重写*/
+    overflow: hidden;
+    text-justify: inter-ideograph; /* IE 6-7 */
+     /* *zoom: 1;IE 6-7 触发 hasLayout 使一行也能两端对齐 */
+    -webkit-text-align-last: justify;
+    text-align-last: justify;/* IE 8+ */
+}
+.text-justify:after{
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+/* 行内元素在行内的垂直对齐方式 */
+.vm{vertical-align:middle;}
+.vtb{vertical-align:text-bottom;}
+.vt{vertical-align:top;}
+
+/* 字体<大小，风格，粗细>*/
+.fs-0{font-size:0;}/*处理，换行时占用宽高问题；其它解决途径：上个标签闭合和该文本在一行即可*/
+.fs-10{font-size: 20rpx;}
+.fs-12{font-size: 24rpx;}
+.fs-14{font-size: 28rpx;}
+.fs-16{font-size: 32rpx;}
+.fs-18{font-size: 36rpx;}
+.fs-20{font-size: 40rpx;}
+.fs-22{font-size: 44rpx;}
+.fs-24{font-size: 48rpx;}
+.fs-26{font-size: 52rpx;}
+.fs-28{font-size: 56rpx;}
+.fs-30{font-size: 60rpx;}
+
+
+.fi,.i{font-style: italic;/*斜体*/}
+.fb,.bold{font-weight: bold;}
+.fn{font-style: normal;font-weight: normal}
+
+
+
+/* 颜色 <主题色(背景色)，文本颜色，衬托色(边框/阴影)>*/
+/* 能设置为类的，只有color及background颜色，其它要有颜色，可以借鉴这边颜色，保持颜色一致 */
+/*背景色(看主题色)*/
+/* 具体值根据自己风格设置 */
+/* 深颜色使用c、f、6、9这四个字符，组合生成 RGB 色值 */
+/* 淡颜色使用a、b、c、d、e、f这六个字符，组合生成 RGB 色值 */
+.theme-color-page{background-color:#eee;}
+.theme-color-button{background-color:#ffcc66;}
+
+.color-2{color:#222;}/*文本颜色，2->9为显眼到不显眼*/
+.color-3{color:#333;}
+.color-6{color:#666;}
+.color-9{color:#999;}
+.color-f{color:#fff;}/*白色*/
+
+.color-a{border-color: #aaa;}/* 衬托色 ，建议从aaa、bbb、ccc、ddd这四个色值挑选:阴影的也根据这个来写即可*/
+.color-b{border-color: #bbb;}
+.color-c{border-color: #ccc;}
+.color-d{border-color: #ddd;}
+
+/* 其它 */
+/* 遮罩 */
+.mask{position:absolute;z-index:2000;background-color:hsla(0,0%,100%,.9);margin:0;top:0;right:0;bottom:0;left:0;transition:opacity .3s}
+
+  /*
+     ==================================flex布局======================================== 
+  */
+
+  /* flex容器常用类 */
+  .flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+/* 排版方向 */
+.flex-direction-row {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.flex-direction-row-reverse {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+
+.flex-direction-column {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.flex-direction-column-reverse {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+}
+
+/* 容器内容排版，带c代表content*/
+/* 容器内容水平排版 */
+.flex-justifyc-start {
+    /*默认*/
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+.flex-justifyc-end {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.flex-justifyc-center {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.flex-justifyc-around {
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+}
+
+.flex-justifyc-between {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+/* 容器内容垂直排版,仅对多行时生效*/
+.flex-alignc-stretch {
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+}
+
+.flex-alignc-start {
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+}
+
+.flex-alignc-end {
+    -ms-flex-line-pack: end;
+    align-content: flex-end;
+}
+
+.flex-alignc-center {
+    -ms-flex-line-pack: center;
+    align-content: center;
+}
+
+.flex-alignc-around {
+    -ms-flex-line-pack: distribute;
+    align-content: space-around;
+}
+
+.flex-alignc-between {
+    -ms-flex-line-pack: justify;
+    align-content: space-between;
+}
+
+/* 项目s内容排版,带s代表项目s */
+.flex-aligns-stretch {
+    /*默认*/
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+}
+
+.flex-aligns-start {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.flex-aligns-end {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
+
+.flex-aligns-baseline {
+    /*基线对齐：对于容器可以不一样，但文字水平保持对齐很有用*/
+    -webkit-box-align: baseline;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+}
+
+.flex-aligns-center {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+/* 换行 */
+.flex-wrap {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+/* 不换行 */
+.flex-nowrap {
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap
+}
+
+/* flex项目常用类 */
+/* 
+* 放大：flex-grow: <number>;        //default 0 
+* 缩小：flex-shrink: <number>;      //default 1
+* 基准：flex-basis: <length> | auto;       //default auto
+*flex属性是flex-grow, flex-shrink 和 flex-basis的简写
+* flex值的情况：
+* 1、auto 等价于 1 1 auto
+* 2、none 等价于 0 0 auto
+* 3、非负数 等价于 x 1 auto【放大比例】
+* 4、长度或百分比 等价于 1 1 20px/20%【基准长度，默认auto表示根据内容弹性的宽度】【可以作为栅格系统。即子项宽度，不再是自适应内容。而是根据这个值来 】
+*/
+
+/* 默认,不放大，平均缩小*/
+.flex-default {
+    /*放大比例*/
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    /*缩小比例*/
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    /* 主轴空间 */
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+}
+
+/* auto：平均放大，平均缩小 */
+.flex-auto,
+.flex1 {
+    -webkit-box-flex: 1;
+    -ms-flex: auto;
+    flex: auto;
+    /*1 1 auto*/
+}
+
+/* none：不放大不缩小，超出会溢出*/
+.flex-none,
+.flex0 {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    flex: none;
+    /*0 0 auto*/
+}
+
+/* 非负数：即x 1 auto【放大比例】 */
+.flex-1 {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.flex-2 {
+    -webkit-box-flex: 2;
+    -ms-flex: 2;
+    flex: 2;
+}
+
+.flex-3 {
+    -webkit-box-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+}
+
+.flex-4 {
+    -webkit-box-flex: 4;
+    -ms-flex: 4;
+    flex: 4;
+}
+
+.flex-5 {
+    -webkit-box-flex: 5;
+    -ms-flex: 5;
+    flex: 5;
+}
+
+/* 长度或百分比：等价于 1 1 20px/20%【基准长度，默认auto表示根据内容弹性的宽度】即子项宽度，不再是自适应内容。而是根据这个值来
+  可以作为栅格系统。 
+*/
+/* flex-col-*表示占用多少列：这里默认一行平分为12列 */
+.flex-col-1 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 8.333333%;
+            flex: 0 0 8.333333%;
+}
+.flex-col-2 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 16.666667%;
+            flex: 0 0 16.666667%;
+}
+.flex-col-3 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 25%;
+            flex: 0 0 25%;
+}
+.flex-col-4 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.333333%;
+            flex: 0 0 33.333333%;
+}
+.flex-col-5 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 41.666667%;
+            flex: 0 0 41.666667%;
+}
+.flex-col-6 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+}
+.flex-col-7 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 58.333333%;
+            flex: 0 0 58.333333%;
+}
+.flex-col-8 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 66.666667%;
+            flex: 0 0 66.666667%;
+}
+.flex-col-9 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 75%;
+            flex: 0 0 75%;
+}
+.flex-col-10 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 83.333333%;
+            flex: 0 0 83.333333%;
+}
+.flex-col-11 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 91.666667%;
+            flex: 0 0 91.666667%;
+}
+.flex-col-12 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+}
+
+
+/*多交叉轴自身对齐方式*/
+/* flex-start | flex-end | center | baseline | stretch */
+.flex-align-self-auto {/*默认*/
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+.flex-align-self-start {
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+}
+
+.flex-align-self-center {
+    -ms-flex-item-align: center;
+    align-self: center;
+}
+
+.flex-align-self-end {
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+}
+
+
+/* 一行多列水平垂直居中,默认水平排版，可由flex-direction来确定排版方向*/
+/* 相当于针对该行，项目内容居中 */
+.flex-alls-center {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+/* 多行多列水平居中，默认水平排版，可由flex-direction来确定排版方向 */
+/* 相当于针对flex容器，容器的居中 */
+.flex-allc-center {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+}
+
+/* 其它 */
+/* 超出省略号... */
+.dots , .dots-1{
+    display:-webkit-box;
+    -webkit-line-clamp:1;/* 多行改这个数字即可*/
+    overflow:hidden;/*要设置容器高度，为：line-height*-webkit-line-clamp*/
+    /* 否则，虽然会出现...。但如果高度较高，底下还是会展示 */
+    /*如果要文字外层使用padding，则在祖父容器设置padding，父容器设置dots*/
+    text-overflow:ellipsis;
+    -webkit-box-orient:vertical;
+    word-break:break-all;
+}
+.dots-2{
+    display:-webkit-box;
+    -webkit-line-clamp:2;/* 多行改这个数字即可*/
+    overflow:hidden;/*要设置容器高度，为：line-height*-webkit-line-clamp*/
+    text-overflow:ellipsis;
+    -webkit-box-orient:vertical;
+    word-break:break-all;
+}
+.dots-3{
+    display:-webkit-box;
+    -webkit-line-clamp:3;/* 多行改这个数字即可*/
+    overflow:hidden;/*要设置容器高度，为：line-height*-webkit-line-clamp*/
+    text-overflow:ellipsis;
+    -webkit-box-orient:vertical;
+    word-break:break-all;
+}
+
+/* ...加载动画 */
+.dot-animation::after {
+    content: '...';
+    -webkit-animation: dot-animation 3s infinite  both;
+            animation: dot-animation 3s infinite  both;
+}
+@-webkit-keyframes dot-animation {
+    33% { content: '.'; }
+    66% { content: '..'; }
+    99% { content: '...'; }
+}
+@keyframes dot-animation {
+    33% { content: '.'; }
+    66% { content: '..'; }
+    99% { content: '...'; }
+}
+
+
+/* 使用iconfont */
+
+@font-face {font-family: "iconfont";
+    src: url('iconfont.eot?t=1559543622508'); /* IE9 */
+    src: url('iconfont.eot?t=1559543622508#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAMIAAsAAAAABvAAAAK5AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqBUIFLATYCJAMMCwgABCAFhG0HPhsZBsgekiQlAQV+AEhsMCQhgmqN7Nnd20dwSA4VkERFGFAx4suHhI3RaHSEYSPyv2vZHyjNllilxGyXkmm6kGk2ZbbAksAeCEnCFdS5e6fOUYp/JfzP5fTu2rxxfstyXIPWGHrUCzAOKNAxJ1kBBcQNYxe8wM0E2o3KJB00dw6Cr8LuFYg3VLeAb8GvKCzVKtSGiQXiIzRa0478FcCH6PvxD/LDFyRNBnvg6esmO9T+7EeEsvz/2U2AQIAApzfIWAYKcdcYv6AIRle0a9Tu3KoIaanQ//9EEkNXD/rHS0QFu7gTzMNE4qefJyL4GXGFBDKoKNgEDiFp8OCQa5QWyYieZsdzxL6/fLAXFQUnt0kB1/eSFFEYfLRillaOTKa9A3D+vK9pQHnnc3ZvQPWhpIwMyeMtJTbtEGVA3icRE+48sDHoNnDwRf1lTJn/R3lZCd4O6vlzmQqVQblevbwI9/vsRy9Dp0IGPWvoJS1YvL5/QYEGHthd01v5AyCPybu/9zfuP1tfD6r83WpSAX7EvjdH+mK4rvXkjuBnSgfWFENuG3LRJJ7EcmYbNxZLaDdc/rPd/V6n64YGFxNaDWWQtBiBrNU0WkjL0OiwClWrbWi3pGV6hwGcIoofsGgDQOj1DEm375D1+oYW0gs0hv2EqjcUaHcWYQt2mA2qNXBsEdiOrDOI2pibuCahxaX9WJ9wWnheHnGHMffQEMrLzi2nWrAb8yWGeCb1fCEIIpy5UDPYDjudDBmcjWGbyB4VwijPySFNb8q2MRdo9nGYhYDZIVYzEMqGcSNBY0GrfL4fppvgZME7cHXxYRjnQVtH8mTLHYC2aNyDcI9yjcckXT5BIBCCY1yQZmDFnE6cQYzmdmMwGyHb6ISooVwOqkeGarK317n+bxO0s3fIIUuKpELrE7WwcerW/WJbHgAAAAA=') format('woff2'),
+    url('iconfont.woff?t=1559543622508') format('woff'),
+    url('iconfont.ttf?t=1559543622508') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url('iconfont.svg?t=1559543622508#iconfont') format('svg'); /* iOS 4.1- */
+  }
+  
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 26px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  /* 返回 */
+  .icon-biaoqing:before {
+    content: "\e609";
+  }
+  /* 首页 */
+  .icon-biaoqing1:before {
+    content: "\e615";
+  }
+  

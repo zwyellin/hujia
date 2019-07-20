@@ -1,0 +1,4 @@
+<!--components/notify/notify.wxml-->
+<view class="notify {{show ? 'show':''}}" style="top:{{customNavBarHeight}}px;background:{{type}};">
+    <slot ></slot>
+</view>

@@ -1,0 +1,29 @@
+/* components/navigationBar/navigationBar.wxss */
+@import "/app.wxss";
+
+.customBarBox{
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    z-index:9999;
+    /* 网格布局 */
+    display: grid;
+    grid-template-areas: 'main';
+}
+.customBarBoxItem{
+   grid-area: main;
+   box-sizing: border-box;
+}
+
+/* 返回及首页时样式 */
+.back-home{
+    border: 1px solid grey;
+    background:rgba(0, 0, 0, 0.15);
+    border-radius: 10000px;/* 左右半圆 */
+}
+
+
+
+
+  

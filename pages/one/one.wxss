@@ -1,0 +1,18 @@
+/* pages/one/one.wxss */
+.red{
+    background:red;
+}
+.redline{
+    background-image:linear-gradient(to right,red 0%, grey 50%,blue 100%);
+    background-size:100% 100%;
+    background-position:0 0;
+}
+
+.progressTest{
+    height: 10rpx !important;
+    /* background-color:red !important; */
+    
+    font-size: 20rpx !important;
+    color: #fff !important;
+   
+}

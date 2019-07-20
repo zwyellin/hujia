@@ -1,0 +1,53 @@
+<!--components/navigationBar/navigationBar.wxml-->
+
+<!-- 整个导航栏:包括状态栏 -->
+<view  style="{{navBarBfc ? '' : 'height:'+customNavBarHeight+'px;'}}">
+    <!-- 避免被遮住，采用fixed定位且z-index置为最高 -->
+    <view class="customBarBox">
+        <!-- 背景图片,customBarBox是网格布局，image和底下view是处于同区域的。即如果view有背景则会覆盖，除非透明/没有背景则才会显示image-->
+        <image wx:if="{{bgImage}}" class="customBarBoxItem" style="z-index:1;width:100%;height:{{customNavBarHeight}}px" src="{{bgImage}}" />
+        <!-- 导航栏内容区域：状态栏下面部分 -->
+        <view class="bg-class customBarBoxItem  flex" 
+        style="z-index:2;height:{{customNavBarHeight}}px;padding-top:{{statusBarHeight}}px;padding-right:{{menuButton.extendWidth}}px;font-size:34rpx;color:{{textColor}}">
+            <!-- @backStyle：返回方式： -->
+            <view class="flex flex0 flex-aligns-center">
+                <!-- 只是显示 返回 -->
+                <view wx:if="{{backStyle=='back'}}" catch:tap="BackPage">
+                   <text class="iconfont icon-biaoqing" style="padding:0 30rpx;"></text>
+                </view>
+                <!-- 只是显示，首页 -->
+                <view wx:elif="{{backStyle=='home'}}" catch:tap="toHome">
+                    <text class="iconfont icon-biaoqing1" style="padding:0 30rpx;font-size:28px"></text> 
+                </view>
+                <!-- 显示返回及首页:类似胶囊样式 -->
+                <view wx:elif="{{backStyle=='back-home'}}" class="flex flex0 flex-aligns-center flex-justifyc-center  back-home" 
+                style="width:{{menuButton.width}}px;height:{{menuButton.height}}px;margin:0 {{menuButton.marginRight}}px;">
+                    <text class="iconfont icon-biaoqing" style="padding:0 10rpx;" catch:tap="BackPage"></text>
+                    <text >|</text>
+                    <text class="iconfont icon-biaoqing1" style="padding:0 10rpx;font-size:28px" catch:tap="toHome"></text> 
+                </view>
+                <!-- 采用卡槽方式 -->
+                <view wx:elif="{{backStyle=='new'}}">
+                    <slot name="back"></slot>
+                </view>
+            </view>
+            <!--标题部分--><!--对齐方式:居中-->
+            <view class="flex flex1 flex-aligns-center flex-justifyc-center">
+                <!-- 如果是文本，超出... -->
+                 <view wx:if="{{contentText}}" class="dots-1">{{contentText}}</view>
+                 <!-- 传了这个卡槽就会显示 -->
+                 <slot name="content"></slot>
+            </view>
+            <!-- right卡槽：待补充 -->
+            <slot name="right"></slot>
+        </view>
+    </view>
+</view>
+<!-- 导航栏外部可携带其它组件 ：如进度条，message消息等-->
+<view style="position:fixed;top:{{customNavBarHeight}}px;width:100%">
+    <progress  type="{{1}}" percent="{{percent}}" incrementRatio="{{10}}"  percentShow="{{false}}">
+    </progress>
+</view>
+
+
+

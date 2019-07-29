@@ -14,6 +14,19 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+function isObj(value) {
+  return Object.prototype.toString.call(value) === '[object Object]'
+}
+function isNumber(value) {
+  return /^\d+$/.test(value);
+}
+function isArray(value){
+  return Object.prototype.toString.call(value)  === '[object Array]';
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  isObj:isObj,
+  isNumber:isNumber,
+  isArray:isArray
 }

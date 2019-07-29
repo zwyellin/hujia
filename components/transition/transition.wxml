@@ -1,0 +1,97 @@
+<!--components/transition/transition.wxml-->
+<!-- 小程序官方：动画过程中，可以使用 bindtransitionend bindanimationstart bindanimationiteration bindanimationend 来监听动画事件。 -->
+<!-- 内容的宽高，以及是否不占用空间(display:absolute)，有外部卡槽设置即可。 -->
+<wxs module="self">
+   function styles(time,display,height){//
+       //duration:
+       var str="";
+       if(time){str+="-webkit-transition-duration:"+time+"ms; transition-duration:"+time+"ms;";}
+       //display:
+       if(!display){str+=" display:none;"}
+       else str+=" ";
+       //height
+       if(height) {
+           str+=" height:"+height+"px;"
+           console.log("height",height);
+       }
+       return str;
+   } 
+    function style_height(height){//height,同上。用于展开隐藏的时候用的。
+        if(height){
+            return "height:"+height+"px;"
+        }else return "";
+    }
+    module.exports={
+        styles:styles,
+        style_height:style_height
+    }
+</wxs>
+
+
+
+
+<!-- 没有蒙层情况 -->
+<view wx:if="{{inited &&  mask == 0}}">
+    <!-- 这个是执行动画的view。要设置display:inline-block。保证不改变<slot/>的宽-->
+    <!-- 但如果要设置百分比，则只能设置到custom-class中 -->
+    <view class="{{classes}} custom-class" id="slot"
+        style="{{self.styles(currentDuration,display,height)}}"
+        bind:transitionend="onTransitionEnd">
+        <slot></slot>
+    </view>
+</view>
+
+
+<!-- 有蒙层的情况 -->
+<!-- 全透明层，此时。蒙层无动画(蒙层提供fixed及布局)，卡槽的容器执行动画：类似无蒙层情况 -->
+<!-- 情况1：过渡元素为卡槽自身。 -->
+<view wx:if="{{inited &&  mask == 1}}">
+    <view class="mask  mask1 {{position}}"
+     style="{{'top:'+margin.top+';bottom:'+margin.bottom}};">
+        <view class="{{classes}} custom-class" id="slot"
+            style="{{self.styles(currentDuration,display,height)}}">
+            <slot></slot>
+        </view>
+    </view>
+</view>
+<!-- 情况2：过渡元素为透明蒙层 -->
+<!-- 此模式，不适合slide。 -->
+<view wx:if="{{inited &&  mask == 2}}">
+    <view class="{{classes}} mask  mask2 {{position}} "
+     style="{{self.styles(currentDuration,display)}};{{'top:'+margin.top+';bottom:'+margin.bottom}};">
+        <view class="custom-class" id="slot">
+            <slot></slot>
+        </view>
+    </view>
+</view>
+
+
+
+<!-- 半透明蒙层，且蒙层和内容一样过渡的情况 -->
+<!-- 此模式，不适合slide。 -->
+<view wx:if="{{inited &&  mask == 3}}" class="mask mask3  {{position}} {{classes}}"
+    style="{{self.styles(currentDuration,display)}};{{'top:'+margin.top+';bottom:'+margin.bottom}};"
+    bind:transitionend="onTransitionEnd" catch:touchmove="maskMove" catch:tap="maskTap">
+    <view catch:tap="mask_content_tap" class="custom-class"  id="slot"> <!--mask_content_tap是为了防止点击了内容区也触发mask的点击 -->
+        <slot></slot>
+    </view>
+</view>
+
+
+
+<!-- 半透明蒙层，且蒙层是缩放的效果的情况 -->
+<view wx:if="{{inited &&  mask == 4}}">
+    <!-- 这里是缩放层 -->
+    <view class="mask mask4 transition {{(status===1 || status===2)? 'mask4Transition':''}} 
+        style="{{self.styles(currentDuration,display)}};{{'top:'+margin.top+';bottom:'+margin.bottom}};"
+        bind:transitionend="onTransitionEnd" catch:touchmove="maskMove" catch:tap="maskTap">
+    </view>
+    <!--这里是透明层，内容和半透明且蒙层和内容一样过渡的情况的一样-->
+    <view class="mask  mask1 {{position}}"
+     style="{{'top:'+margin.top+';bottom:'+margin.bottom}};">
+        <view class="{{classes}} custom-class" id="slot"
+            style="{{self.styles(currentDuration,display,height)}};position:fixed;z-index:1200;">
+            <slot></slot>
+        </view>
+    </view>
+</view>

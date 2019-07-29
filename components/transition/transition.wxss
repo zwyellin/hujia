@@ -1,0 +1,232 @@
+/* components/transition/transition.wxss */
+/*----------------------------------------------文档说明---------------------------------------------------------*/
+/*说明：
+*1：enter 填写过渡开始的状态。
+*2：enter-active:这里写要过渡哪些属性,过渡时间放在style上面了。此时，已具备过渡的属性。
+*3：enter-to:enter的最终状态。即此时，修改了属性。过渡开始
+*4：leave 填写离开开始的状态（如果就从3状态离开。则不用写）
+*5：leave-active：这里写要过渡哪些属性
+*6:leave-to:leave的最终状态。即此时，修改了属性。过渡开始
+* 
+*7：transition-timing-function，建议也放在-active中，只要-to时具备就行(没有会采用默认)。这边预设的都是ease类型，因此提取出来。
+*/
+/* ---------------------------------------------预设说明------------------------------------------------------*/
+/* 预留过渡 */
+/**
+*1、fade
+*2、移动:up,right,down,left四个方向
+*3、scale缩放：默认是从0->1，还预设了一个从1->1.2的
+*4、rotate旋转。顺时针旋转。角度用以上方向来指示。如果逆时针中间加上reserve。如rotate-right表示选择180度，rotate-down-reserve表示逆时针旋转90度。
+*5、slide：内容块张开还是隐藏。
+*说明：以上是整体过渡的单元：传name的时候，可以多个组合，形成更加复杂的过渡。
+*如果这些组合，还不够你的使用，可以部分或全部过渡通过外部传类来实现。
+*/
+
+.transition{
+    transition-timing-function: ease;
+    transition-property:all;
+}
+/* 底下蒙层 */
+.mask{
+    position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+    outline: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 2000rpx;
+    perspective: 2000rpx;
+
+    background: transparent;
+
+    display: -webkit-box;
+    display: flex;
+}
+
+.mask1 {/*全透明:此时过渡元素为卡槽*/
+    pointer-events: none;
+}
+.mask2 {/*全透明:此时过渡元素为蒙层*/
+    pointer-events: none;
+}
+
+
+.mask3 {/*半透明*/
+	background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.mask4 {/*缩放*/
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.6) !important;
+	-webkit-transform: scale(1.185);
+	        transform: scale(1.185);
+    pointer-events: none;
+    transition-timing-function:cubic-bezier(0,.61,.88,.82) !important;
+}
+
+.mask4Transition{
+    opacity: 1;
+	-webkit-transform: scale(1);
+	        transform: scale(1);
+	overflow-x: hidden;
+	overflow-y: auto;
+    pointer-events: auto;  
+    transition-timing-function:cubic-bezier(0,.61,.88,.82) !important;
+}
+
+/* 蒙层卡槽position布局 */
+.mask.center{
+    justify-content: center;
+    align-items: center;
+}
+.mask.top{
+    justify-content: center;
+    align-items: flex-start;
+}
+.mask.bottom{
+    justify-content: center;
+    align-items: flex-end;
+}
+.mask.left{
+    justify-content: flex-start;
+    align-items: center;
+}
+.mask.right{
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* 预设过渡 */
+/* fade */
+.fade-enter,
+.fade-leave-to{
+    opacity: 0;
+}
+/*移动*/
+/* up */
+.up-enter,
+.up-leave-to{
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+}
+
+/* down */
+.down-enter,
+.down-leave-to{
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+}
+
+
+/*left*/
+.left-enter,
+.left-leave-to{
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+}
+
+/* right */
+.right-enter,
+.right-leave-to{
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+}
+
+
+/* scale */
+/*1、 从0放大到现在大小 */
+.scale-enter,
+.scale-leave-to{
+    -webkit-transform: scale3d(0,0,0);
+    transform:scale3d(0,0,0);
+}
+/* 2、从现在大小，放大1.2倍：其它情况自定义 */
+.scale-reverse-enter-to,
+.scale-reverse-leave{
+    -webkit-transform: scale3d(1.2,1.2,0);
+    transform:scale3d(1.2,1.2,0);
+}
+
+/*旋转：这边预设的旋转中心，为容器中心，较复杂的自定义传类解决*/
+/* rotate3d(x,y,z,angle)。这边只是z轴旋转，相当于2d旋转*/
+/* 旋转角度为顺时针，所以，看容器左边要去哪里即是，方向和上面的一样：up、right、down、left。如果要逆时针，则需要加上-reserse */
+/* 顺时针旋转90deg */
+.rotate-up-enter-to,
+.rotate-up-leave{
+    -webkit-transform: rotate3d(0,0,1,90deg);
+    transform: rotate3d(0,0,1,90deg);
+}
+/* 顺时针旋转180deg */
+.rotate-right-enter-to,
+.rotate-right-leave{
+    -webkit-transform: rotate3d(0,0,1,180deg);
+    transform: rotate3d(0,0,1,180deg);
+}
+/* 顺时针旋转270deg */
+.rotate-down-enter-to,
+.rotate-down-leave{
+    -webkit-transform: rotate3d(0,0,1,270deg);
+    transform: rotate3d(0,0,1,270deg);
+}
+/* 顺时针旋转360deg */
+.rotate-left-enter-to,
+.rotate-left-leave{
+    -webkit-transform: rotate3d(0,0,1,360deg);
+    transform: rotate3d(0,0,1,360deg);
+}
+
+/* 逆时针旋转90deg */
+.rotate-down-enter-to,
+.rotate-down-leave{
+    -webkit-transform: rotate3d(0,0,1,-90deg);
+    transform: rotate3d(0,0,1,-90deg);
+}
+/* 逆时针旋转180deg */
+.rotate-right-reverse-enter-to,
+.rotate-right-reverse-leave{
+    -webkit-transform: rotate3d(0,0,1,-180deg);
+    transform: rotate3d(0,0,1,-180deg);
+}
+/* 逆时针旋转270deg */
+.rotate-up-reverse-enter-to,
+.rotate-up-reverse-leave{
+    -webkit-transform: rotate3d(0,0,1,-270deg);
+    transform: rotate3d(0,0,1,-270deg);
+}
+/* 逆时针旋转360deg */
+.rotate-left-reverse-enter-to,
+.rotate-left-reverse-leave{
+    -webkit-transform: rotate3d(0,0,1,-360deg);
+    transform: rotate3d(0,0,1,-360deg);
+}
+
+/* slide */
+.slide-enter{
+    height: 0 !important;
+    overflow: hidden;
+}
+.slide-leave-to{
+    height: 0 !important;
+    overflow: hidden;
+}
+/*如果要查询节点height,则需要视觉上移出去，然后放开max-height的限制，才能拿到height*/
+/*查询到节点信息之后，再切换为slide-enter的状态*/
+.slide-enter-chaxun{
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 2000rpx;
+    perspective: 2000rpx;
+    background: transparent;
+    pointer-events: none;
+    opacity: 0;
+}
+.slide-enter-to,
+.slide-leave{
+    height: auto;
+    overflow: auto;
+}
+

@@ -19,3 +19,9 @@
 .usermotto {
   margin-top: 200px;
 }
+
+.redline{
+  background-image:linear-gradient(to right,red 0%, grey 50%,blue 100%);
+  background-size:100% 100%;
+  background-position:0 0;
+}

@@ -1,6 +1,6 @@
 <!--components/progress/progress.wxml-->
 <!-- 进度条组件 -->
-<view class="progress-container {{_type}} {{_active ? 'active':''}}">
+<view class="progress-container {{_type}} {{_active ? 'active':''}}" id="xx">
     <!--进度条-->
     <view class="progress-class" style="{{'width:'+_percent+'%'}}">
         {{percentShow ? _percent+'%' :''}}

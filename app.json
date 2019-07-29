@@ -5,17 +5,16 @@
     "pages/one/one"
   ],
   "window": {
-    "navigationStyle": "custom",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#333",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "navigationBar": "/components/navigationBar/navigationBar",
     "progress": "/components/progress/progress",
     "modal": "/components/modal/modal",
-    "notify": "/components/notify/notify"
+    "notify": "/components/notify/notify",
+    "transition":"/components/transition/transition"
   }
 }

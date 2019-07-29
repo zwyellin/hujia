@@ -1,14 +1,23 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<!-- <navigationBar  backStyle="back"  contentText="index" bgClass="red" bgClass="redline"  navBarBfc="{{false}}" ></navigationBar> -->
+
+  <transition 
+    show="{{true}}"
+    name="{{['fade','right']}}"
+    mask="{{0}}"
+    duration="{{800}}"
+  >
+  <view class="container">
+    <view class="userinfo">
+      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+    <navigator class="usermotto"  url="/pages/one/one" hover-class="navigator-hover" open-type="navigate">
+      <text class="user-motto">{{motto}}</text>
+    </navigator> 
   </view>
-  <navigator class="usermotto"  url="/pages/one/one" hover-class="navigator-hover" open-type="navigate">
-     <text class="user-motto">{{motto}}</text>
-  </navigator> 
-  
-</view>
+  </transition>
+

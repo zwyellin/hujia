@@ -1,3 +1,4 @@
+import { extendComponent } from '../../common/component';
 // components/progress/progress.js
 /* 
 *1、这个是进度条
@@ -5,7 +6,7 @@
 *
 *
 */
-Component({
+extendComponent({
  /**
  *组件的属性列表
  *  @type:进度条类型
@@ -96,7 +97,19 @@ Component({
   lifetimes: {       //生命周期函数，可以为函数，或一个在methods段中定义的方法名
     created(){},
     attached(){},
-    ready(){},
+    ready(){
+      setTimeout(()=> {
+        this.getIntersection("#xx").then(res=>{
+          console.log("view视图",res);
+          res.intersectionObserver.disconnect();
+          console.log("视图 关闭");
+        })
+        this.getRect('#xx').then(res=>{
+          console.log("xx node:",res);
+        })
+      }, 5000);
+     
+    },
     moved(){},
     detached(){this._clearInterval();console.log("组件销毁")}//清除计时器
   },

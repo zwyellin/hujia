@@ -1,28 +1,112 @@
+  <transition 
+    show="{{show1}}"
+    name="{{ {enter:['fade','up'],leave:'scale'} }}"
+    mask="{{0}}"
+    retain="{{true}}"
+    duration="{{ {enter:800,leave:20} }}"
+  >
 
-
-<navigationBar percent="{{percent}}" bgImage="{{}}" bgClass="{{bgClass}}" textColor="{{textColor}}" navBarBfc="{{navBarBfc}}" backStyle="{{backStyle}}" contentText="{{contentText}}"></navigationBar>
-
-<image style="width:100%;" src="../../images/one/timg.jpg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+  <transition 
+    show="{{show}}"
+    name="{{nameArr}}"
+    mask="{{mask}}"
+    position="{{position}}"
+    retain="{{retain}}"
+    duration="{{1000}}"
+    enter-class="enter-class{{classIndex}}"
+    enter-active-class="enter-active-class{{classIndex}}"
+    enter-to-class="enter-to-class{{classIndex}}"
+    leave-class="leave-class{{classIndex}}"
+    leave-active-class="leave-active-class{{classIndex}}"
+    leave-to-class="leave-to-class{{classIndex}}"
+    custom-class="{{customClass}}"
+  >
+    <view >
+      这个是文字
+    </view>
+  </transition>
     
-</image>
 
-<progress  type="{{1}}" percent="{{percent}}" incrementRatio="{{increment}}" progress-class="progressTest" percentShow="{{false}}">
-</progress>
-<view style="margin-top:30rpx"></view>
- 
-<progress  type="{{2}}" percent="{{percent}}" incrementRatio="{{increment}}" progress-class="progressTest" percentShow="{{false}}">
-</progress>
+  <view catch:tap="transitionTap" >
+1、选运动方向(可与其它组合)：
+<view class="flex mb-20">
+    <view data-name="up" class="tt">up</view>
+    <view data-name="right" class="tt">right</view>
+    <view data-name="down" class="tt">down</view>
+    <view data-name="left" class="tt">left</view>
+</view>
+2、fade、slide(可与其它组合):
+<view class="flex mb-20">
+    <view data-name="fade" class="tt">fade</view>
+    <view data-name="slide" class="tt">展开/隐藏</view>
+</view>
+3、scale(可与其它组合):
+<view class="flex mb-20">
+     <view data-name="scale" class="tt">scale</view>
+     <view data-name="scale-reverse" class="tt">scale-reverse</view>
+</view>
+4、rotate(可与其它组合):
+<view class="flex mb-20">
+     <view data-name="rotate-up" class="tt">90</view>
+     <view data-name="rotate-right" class="tt">180</view>
+     <view data-name="rotate-down" class="tt">270</view>
+     <view data-name="rotate-left" class="tt">360</view>
+     <view data-name="rotate-down-reverse" class="tt">-90</view>
+     <view data-name="rotate-right-reverse" class="tt">-180</view>
+     <view data-name="rotate-up-reverse" class="tt">-270</view>
+     <view data-name="rotate-left-reverse" class="tt">-360</view>
+</view>
 
-<view class="progressTest"></view>
+<text style="color:red">操作:</text>
+<view class="flex mb-20" >
+     <view data-id="0" class="tt" catch:tap="caozuo">开始</view>
+     <view data-id="1" class="tt" catch:tap="caozuo">清除</view>
+</view>
 
-<modal show="{{modalShow}}" type="{{modalType}}">
-    <view style="width:400rpx;height:200rpx;background:red;">这个是{{modalType}}</view>
-</modal>
-<view catch:tap="modalShowTap">modal显示</view>
+以下是对蒙层相关的操作
+5、mask:
+<view class="flex mb-20">
+    <view data-mask="1" class="tt">全透明1</view>
+     <view data-mask="2" class="tt">全透明2</view>
+    <view data-mask="3" class="tt">半透明同步</view>
+    <view data-mask="4" class="tt">半透明缩放</view>
+    <view data-mask="0" class="tt">无蒙层</view>
+</view>
+6、position:
+<view class="flex mb-20">
+    <view data-position="top" class="tt">位置top</view>
+    <view data-position="right" class="tt">位置right</view>
+    <view data-position="bottom" class="tt">位置bottom</view>
+    <view data-position="left" class="tt">位置left</view>
+    <view data-position="center" class="tt">位置center</view>
+</view>
+7、内容区设置：
+<view class="flex mb-20">
+    <view data-trclass="trans0" class="tt">px</view>
+    <view data-trclass="trans1" class="tt">40%</view>
+    <view data-trclass="trans2" class="tt">80%</view>
+    <view data-trclass="trans3" class="tt">100%</view>
+</view>
+8、高级操作（组合加区分enter、leave）：
+<view class="flex mb-20">
+    <view data-name="{{ {enter:['fade','up'],leave:'fade'} }}" class="tt">不同0</view>
+    <view data-name="{{  {enter:'fade',leave:['fade','down']}  }}" class="tt">不同1</view>
+    <view data-name="{{  {enter:['fade','scale'],leave:['scale','up']}  }}" class="tt">不同2</view>
+    <view data-name="{{  {enter:['scale','rotate-up'],leave:['down','rotate-up-reverse']}  }}"  class="tt">不同3</view>
+    <view data-name="{{ {enter:'',leave:''} }}" class="tt">外部类</view>
+    <view data-retain="{{true}}" class="tt">保留</view>
+    <view data-retain="{{false }}" class="tt">不保留</view>
+</view>
 
-<notify show="{{notifyShow}}">祝福送到附近开了打手犯规</notify>
+9、高级操作(外部类测试)：
+<view class="flex mb-20">
+   <view data-name="{{ {enter:'',leave:'up'} }}" data-classindex="1" class="tt">外1+内up</view>
+   <view data-name="{{ {enter:['fade','up'],leave:''} }}"  data-classindex="2"   class="tt">内d/f+外2</view>
+   <view data-name="{{ {enter:'',leave:''} }}"  data-classindex="0" class="tt">外0</view>
+   <view data-name="{{ {enter:'',leave:''} }}"  data-classindex="1" class="tt">外1</view>
+   <view data-name="{{ {enter:'',leave:''} }}"  data-classindex="2" class="tt">外2</view>
+   <view data-name="{{ {enter:'',leave:''} }}"  data-classindex="3" class="tt">外3</view>
+</view>
 
-
-<!-- <modal show="{{true}}" type="{{'center'}}" close="{{true}}">
-    <view style="width:400rpx;height:100%;background:red;">这个是bottom</view>
-</modal> -->
+</view>
+</transition> 

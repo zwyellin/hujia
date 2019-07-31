@@ -24,8 +24,13 @@ Page({
       mask: true
     });
     setTimeout(()=> {
-      wx.hideLoading();
-     this.setData({show1:true});
+     
+     this.setData({show1:true},()=>{
+       setTimeout(function() {
+        wx.hideLoading();
+       }, 100);
+    
+     });
     }, 1000);
   },
   transitionTap(event){
@@ -66,7 +71,7 @@ Page({
           this.setData({
             show:false
           })
-        },5000);
+        },3000);
       })
     }
     else{//清除

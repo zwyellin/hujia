@@ -87,10 +87,9 @@
         bind:transitionend="onTransitionEnd" catch:touchmove="maskMove" catch:tap="maskTap">
     </view>
     <!--这里是透明层，内容和半透明且蒙层和内容一样过渡的情况的一样-->
-    <view class="mask  mask1 {{position}}"
-     style="{{'top:'+margin.top+';bottom:'+margin.bottom}};">
-        <view class="{{classes}} custom-class" id="slot"
-            style="{{self.styles(currentDuration,display,height)}};position:fixed;z-index:1200;">
+    <view class="mask  mask1 {{position}} {{classes}}"
+     style="{{self.styles(currentDuration,display,height)}};{{'top:'+margin.top+';bottom:'+margin.bottom}};">
+        <view class="custom-class" id="slot">
             <slot></slot>
         </view>
     </view>

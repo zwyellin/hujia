@@ -3,7 +3,7 @@
     name="{{ {enter:['fade','up'],leave:'scale'} }}"
     mask="{{0}}"
     retain="{{true}}"
-    duration="{{ {enter:800,leave:20} }}"
+    duration="{{ {enter:800,leave:0} }}"
   >
 
   <transition 

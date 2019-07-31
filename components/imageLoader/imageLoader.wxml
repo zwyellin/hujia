@@ -1,0 +1,5 @@
+<!--components/imageLoader/imageLoader.wxml-->
+<!-- 未加载时 或加载失败-->
+<image hidden='{{finishLoadFlag}}' mode='{{mode}}' lazy-load="{{true}}" src='{{defaultSrc}}' bind:tap="previewImage"  class="custom-class"/>
+<!-- 加载成功后 -->
+<image hidden="{{!finishLoadFlag}}" mode='{{mode}}' lazy-load="{{true}}" src='{{src}}' bindload='finishLoad' binderror="loadErr"  bind:tap="previewImage"  class="custom-class" />

@@ -12,7 +12,7 @@
     mask="{{mask}}"
     position="{{position}}"
     retain="{{retain}}"
-    duration="{{1000}}"
+    duration="{{4000}}"
     enter-class="enter-class{{classIndex}}"
     enter-active-class="enter-active-class{{classIndex}}"
     enter-to-class="enter-to-class{{classIndex}}"
@@ -21,7 +21,7 @@
     leave-to-class="leave-to-class{{classIndex}}"
     custom-class="{{customClass}}"
   >
-    <view >
+    <view class="skeletonItem">
       这个是文字
     </view>
   </transition>

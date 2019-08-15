@@ -23,7 +23,9 @@
 */
 
 .transition{
-    transition-timing-function: ease;
+    -webkit-transition-timing-function: ease;
+            transition-timing-function: ease;
+    -webkit-transition-property:all;
     transition-property:all;
 }
 /* 底下蒙层 */
@@ -43,6 +45,7 @@
     background: transparent;
 
     display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -64,7 +67,8 @@
 	-webkit-transform: scale(1.185);
 	        transform: scale(1.185);
     pointer-events: none;
-    transition-timing-function:cubic-bezier(0,.61,.88,.82) !important;
+    -webkit-transition-timing-function:cubic-bezier(0,.61,.88,.82) !important;
+            transition-timing-function:cubic-bezier(0,.61,.88,.82) !important;
 }
 
 .mask4Transition{
@@ -74,29 +78,50 @@
 	overflow-x: hidden;
 	overflow-y: auto;
     pointer-events: auto;  
-    transition-timing-function:cubic-bezier(0,.61,.88,.82) !important;
+    -webkit-transition-timing-function:cubic-bezier(0,.61,.88,.82) !important;  
+            transition-timing-function:cubic-bezier(0,.61,.88,.82) !important;
 }
 
 /* 蒙层卡槽position布局 */
 .mask.center{
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 .mask.top{
-    justify-content: center;
-    align-items: flex-start;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
 }
 .mask.bottom{
-    justify-content: center;
-    align-items: flex-end;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
 }
 .mask.left{
-    justify-content: flex-start;
-    align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 .mask.right{
-    justify-content: flex-end;
-    align-items: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 /* 预设过渡 */
@@ -149,6 +174,8 @@
     -webkit-transform: scale3d(1.2,1.2,0);
     transform:scale3d(1.2,1.2,0);
 }
+
+
 
 /*旋转：这边预设的旋转中心，为容器中心，较复杂的自定义传类解决*/
 /* rotate3d(x,y,z,angle)。这边只是z轴旋转，相当于2d旋转*/
@@ -230,3 +257,41 @@
     overflow: auto;
 }
 
+
+
+/* 动画 */
+/* 这边预设scale-x动画 */
+.scale-x-enter{
+    
+}
+
+.scale-x-enter-active{
+    -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+}
+.scale-x-enter-to{
+    -webkit-animation-name: scalex;
+            animation-name: scalex;
+    -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+            -webkit-animation-iteration-count:infinite;
+                    animation-iteration-count:infinite;
+            -webkit-transform-origin:left;
+                    transform-origin:left;
+            -webkit-transition-property:none;
+            transition-property:none;
+}
+
+
+@-webkit-keyframes scalex {
+    from {
+      -webkit-transform: scale3d(0.5, 1, 1);
+              transform: scale3d(0.5, 1, 1);
+    }
+    to {
+      -webkit-transform: scale3d(1.5, 1, 1);
+              transform: scale3d(1.5, 1, 1);
+    }
+  }

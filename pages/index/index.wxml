@@ -1,12 +1,6 @@
 <!--index.wxml-->
 <!-- <navigationBar  backStyle="back"  contentText="index" bgClass="red" bgClass="redline"  navBarBfc="{{false}}" ></navigationBar> -->
 
-  <transition 
-    show="{{true}}"
-    name="{{['fade','right']}}"
-    mask="{{0}}"
-    duration="{{800}}"
-  >
   <view class="container">
     <view class="userinfo">
       <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
@@ -19,5 +13,119 @@
       <text class="user-motto">{{motto}}</text>
     </navigator> 
   </view>
-  </transition>
 
+
+<view class="flex flex-justifyc-between flex-wrap">
+    <view  class="ske">
+    <skeleton watchData="{{ttt}}" custom-class="br-max">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt}}" custom-class="br-max">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt}}" custom-class="br-max">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt}}" custom-class="br-max">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt}}" custom-class="br-max">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt}}" custom-class="br-max">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt}}" custom-class="br-max">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt}}" custom-class="br-max">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+</view>
+
+<view class="flex flex-justifyc-between flex-wrap">
+    <view  class="ske">
+    <skeleton watchData="{{ttt1}}" custom-class="br-max" transition="{{['fade','down']}}">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt1}}" custom-class="br-max" transition="{{['fade','down']}}">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt1}}" custom-class="br-max" transition="{{['fade','down']}}">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt1}}" custom-class="br-max" transition="{{['fade','down']}}">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt1}}" custom-class="br-max" transition="{{['fade','down']}}">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt1}}" custom-class="br-max" transition="{{['fade','down']}}">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt1}}" custom-class="br-max" transition="{{['fade','down']}}">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+    <view  class="ske">
+    <skeleton watchData="{{ttt1}}" custom-class="br-max" transition="{{['fade','down']}}">
+      <view class="ske1"></view>
+    </skeleton>
+    </view>
+    <!--  -->
+</view>
+
+<view class="fs-12">
+  <view style="margin-top:10rpx;">
+    <skeleton watchData="{{ttt2}}" transition="{{['scale-x']}}" duration="3000">
+      <view style="line-height:1">{{ttt2}}</view>
+    </skeleton>
+    </view>
+    <view  style="margin-top:10rpx;">
+    <skeleton watchData="{{ttt22}}"  transition="{{['fade','right']}}">
+      <view style="line-height:1">{{ttt22}}</view>
+    </skeleton>
+    </view>
+  </view>

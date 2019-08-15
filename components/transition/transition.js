@@ -149,7 +149,7 @@ extendComponent({
     },
     close: { //如果有mask，点击Mask是否关闭蒙层
       type: Boolean,
-      value: false
+      value: true
     }
   },
   observers: {
@@ -197,7 +197,7 @@ extendComponent({
       const classNames = getClassNames(currentName);
       this.data.classNames=classNames;//查询节点的时候需要用到它
       const currentDuration =isObj(duration) ? duration.enter :parseInt(duration);
-      console.log("过渡enter函数:enter",classNames.enter);
+      console.log("过渡enter函数:enter",classNames.enter,currentDuration);
       console.log("过渡enter函数:enter-to",classNames['enter-to']);
      
       Promise.resolve() //显著标识为promise
@@ -296,8 +296,9 @@ extendComponent({
     },
     maskTap() {
       console.log("点击了蒙层,close值为:",this.data.close);
-      if(this.data.close){
-        this.data.show=false;//设置这里会触发observers
+      if(this.data.close && this.data.status>=2){
+        this.data.show=false;
+        this.leave();
       }
     }
   }

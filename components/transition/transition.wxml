@@ -31,7 +31,7 @@
 
 
 <!-- 没有蒙层情况 -->
-<view wx:if="{{inited &&  mask == 0}}">
+<view wx:if="{{inited &&  mask == 0}}" class="skeleton">
     <!-- 这个是执行动画的view。要设置display:inline-block。保证不改变<slot/>的宽-->
     <!-- 但如果要设置百分比，则只能设置到custom-class中 -->
     <view class="{{classes}} custom-class" id="slot"

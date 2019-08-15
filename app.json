@@ -15,6 +15,7 @@
     "progress": "/components/progress/progress",
     "modal": "/components/modal/modal",
     "notify": "/components/notify/notify",
-    "transition":"/components/transition/transition"
+    "transition":"/components/transition/transition",
+    "skeleton":"/components/skeleton/skeleton"
   }
 }

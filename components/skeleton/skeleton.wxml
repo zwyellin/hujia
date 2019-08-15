@@ -1,0 +1,25 @@
+<!--components/skeleton/skeleton.wxml-->
+<!-- 这里是真实渲染 -->
+<view wx:if="{{success}}" >
+    <slot />
+</view>
+
+<!-- 这里是骨架屏：有动画情况 -->
+ <transition 
+    wx:elif="{{transition}}"
+    show="{{true}}"
+    name="{{ transition }}"
+    duration="{{duration}}"
+    custom-class="skeleton custom-class"
+ >
+    <view style="opacity:0;">
+        <slot />
+    </view>
+</transition>
+
+<!-- 这里是骨架屏:无动画情况 -->
+<view  wx:else  class="skeleton custom-class">
+    <view style="opacity:0;">
+        <slot />
+    </view>
+</view>

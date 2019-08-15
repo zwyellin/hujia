@@ -1,0 +1,8 @@
+/* components/skeleton/skeleton.wxss */
+.skeleton{
+    display: inline-block;
+    vertical-align:bottom;
+    background: #ccc;
+}
+
+

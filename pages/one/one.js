@@ -71,7 +71,7 @@ Page({
           this.setData({
             show:false
           })
-        },3000);
+        },10000);
       })
     }
     else{//清除

@@ -16,6 +16,9 @@ extendPage({
     transitionMask:false,
     transitionPosition:null,
 
+    ttt2:"这里是测试替换相同数据",
+    ttt22:"这里是测试替换不同数据"
+
   },
   //事件处理函数
   bindViewTap: function() {
@@ -51,8 +54,26 @@ extendPage({
         }
       })
     }
+    this.setData({
+      tt:'jj'
+    })
     // 私有
- 
+    setTimeout(()=> {
+      this.setData({
+        ttt:'sdfsad'
+      })
+    }, 4000);
+    setTimeout(()=> {
+      this.setData({
+        ttt1:'sdfsad'
+      })
+    }, 5000);
+    setTimeout(()=> {
+      this.setData({
+        ttt2:'这里是测试替换相同数据',
+        ttt22:"这里是测试替换不同数据，这里是测试替换不同数据"
+      })
+    }, 7000);
   },
   getUserInfo: function(e) {
     console.log(e)

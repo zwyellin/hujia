@@ -25,3 +25,19 @@
   background-size:100% 100%;
   background-position:0 0;
 }
+
+
+.ske{
+  width: 160rpx;
+  height: 60rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ske1{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  background: purple;
+}
